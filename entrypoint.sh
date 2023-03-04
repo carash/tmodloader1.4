@@ -85,7 +85,13 @@ else
 fi
 
 # Base startup command
-server="/root/terraria-server/LaunchUtils/ScriptCaller.sh -server -steamworkshopfolder \"/root/terraria-server/workshop-mods/steamapps/workshop\""
+server="/root/terraria-server/LaunchUtils/ScriptCaller.sh -server"
+
+if [[ "$TMOD_USEMODPACK" == "Yes" ]]; then
+  server="$server -steamworkshopfolder none -tmlsavedirectory \"/root/terraria-server/modpack\""
+else
+  server="$server -steamworkshopfolder \"/root/terraria-server/workshop-mods/steamapps/workshop\""
+fi
 
 # If config, we supply it at the command line.
 if [[ "$TMOD_USECONFIGFILE" == "Yes" ]]; then
